@@ -1,0 +1,174 @@
+Go Language
+	-> OpenSource
+	-> Functionalities
+		-> Simplicity, Scalability, Clarity
+		-> High Performance & Focus on concurrency
+		-> Standard Libraries & Code Features are built in.
+		-> Static Typing
+	
+	Mostly Used in
+		-> Networking and API's
+		-> Microservices
+		-> CLI Tools
+	
+List of Rules
+	-> Package name is the mandatory.
+	-> There are multiple ways to execute a go code one is to use "go run " command and another is to create executable file.
+	-> Go can have multiple go file with package as main but one we cannot have the multiple main function in the main package.
+
+Package
+	-> Multiple go files can have the same package name. 
+	-> It helps to reuse the code.
+	-> The term "main" for the package is given to inform the compiler that where starting point of execution of the program.
+
+Module
+	-> Go understand both the module and package
+	-> A single project has single module and inside that module it will have multiple packages.
+	-> Command "go mod init <module-name>" create a go.mod file containing the module name and details.
+	
+Values & Types
+	-> Variable name is prefered to be a camel Casing.
+	-> We can declare variable and constant outside of the functions.
+	
+	-> Go infers the type of a variable based on the value assigned else one has to explicity define the type.
+	-> var <list of variableName> <type> = <list of values>
+	-> NOTE: Type needs to be assigned at last and same type is assigned to all the variable.
+			OR 
+	-> Other way to define a varibale ie to use (:=) to directly assign a value.
+	
+	Basic Typesx.
+		-: int, float, string, bool
+		-: Niche Basic Types (uint, int32 ....)
+	
+	Null Values
+		:= int has 0
+		:= float64 has 0.0
+		:= string has ""
+		:= bool has false
+	
+	Constant Values
+		-> use the const keyword 
+
+Formatting Strings
+	fmt.Printf 
+		-> %v (represent value of a varable)
+		-> %.0f -> (f stands for float and 0 represent the precision of the float value )
+	
+	fmt.Sprintf
+		-> Used to generate and store the value of the string in an varable
+	
+	fmt.Scan()
+		-> Takes the single value input from the user via console.
+	
+	// Accepting the longer input use bufio package
+		Eg: reader := bufio.NewReader(os.Stdin)
+			text, err := reader.ReadString('\n')					// Read the string till the next line. text variable will contain the \n as well which needs to be trimed.
+			text = strings.trim(text, "\n")
+			
+	
+	Multiline Strings
+		We can use (``) to for multiline strings.
+
+strconv package
+	-> strconv package is used to convert the string to float, int ....
+
+Functions
+	-> Code on demand
+	-> We can have multiple return types from a single function defined in curly braces.
+	-> We can name the return type variable name while defining the function which creates a variable with default value. No need to return any thing in that case.
+	
+Control Statement
+	-> if .. else if statements
+	-> Does not requires the round bracket around the conditions.
+
+For Loop
+	-> Looping using break and continue.
+	
+	Conditional For Loops
+		for someCondition {
+				// do something ...
+		}
+		-> This loops runs till the conditions gets failed.
+Switch:
+	-> Runs based on choice
+
+
+Writing to files:
+	-> Use of Go standard library "os"
+	-> os.WriteFile("messageSwitch.txt", []byte(msg), 0644) -> 0644 represent the permission
+
+Error in GoLang
+	-> We do not have try catch block in GoLang but we can check the error using the If else conditions
+
+panic()
+	-> It halts the program execution.
+	-> It can output the error message panic("Can not process further")
+
+Package in Go
+	-> You can access the functions and variables of same package without importing it.
+	-> We can create a multiple package with different names.
+		-> The constraint with the package we have is that one folder can have one package name for all go files.
+		-> You need to create a new subfolder for new sub package.
+		-> The folder name and the package name should be same.
+		
+		-> While importing you need to give the project name(in go.mod file) followed by the package name.
+				Eg: import "github.com/suraj8108/learnGo/newPackage"
+		-> (IMP) In Go you can export the function, variable and constant only if that starts with the uppercase. Else it can not be imported.
+
+Pointers
+	What are Pointers
+	-> Variable that stores address instead of value.
+	-> Go has a Garbage collector which is a process that cleans up unused data.
+	
+	Advantage of Pointers
+		-> Avoid Unnecessary value copies
+		-> Direct Mutate values.
+	
+	-> The null value of the pointer in Go is "nil" - a special value built in Go.
+	-> nil represents the absence of an address value - i.e., a pointer pointing at no address / no value in memory.
+
+
+Struct & Custom Types
+	Struct is like grouping of the different common variables.
+	Eg: type <struct-name First upercase name defines that whether its public or not> struct {}
+	You can also pass the struct as the parameter as a value or the pointer reference.
+	
+	We can attach the functions to the struct.
+	func (<variableName> structName) functionName() {}
+	
+	NOTE: When a function is associated to a struct it can be associated either as value or as pointer. (<variableName> structName) OR (<variableName> *structName). 
+		  There no much difference between them its just that operation performed on struct field in pointer one will do the changes in that original struct but same wont happen 
+		  with the value one.
+	
+	Function Used to create a new Struct (Constructor) -:
+		This function accepts the list of parameter of struct and return the new struct pointer.
+		Generally the Contructor name is given as "New" and it may contain the validation logic.
+	
+	Package in Struct:
+		We can export the struct outside of the package by keeping the fist letter of the struct as Uppercase.
+		NOTE: Just keeping the first letter of struct as Upper case does not makes the field of struct as public. 
+			  We can keep the few fields of struct as accessible outside of package and few as a private by following the upper case logic.
+	
+	Struct Embedding (In Java it refers to as an Inheritance):
+		The child struct has the abilities of the parent struct like its fields and methods access.
+		Egs:
+			type Admin struct {						type Admin struct {
+				fname	string							email 	string
+				lname	string							pass 	string
+				birthDate string						user 	User
+			}										}
+	
+	Struct Tags:
+		-> Its a meta data that we can add to the field of struct which names the field while exporting to the JSON.
+		Eg: type Note struct {
+				Title string `json:"title"`
+			}
+		
+
+Custom Type in Go
+	-> We can create alias to the built in type and use it.
+	Eg: type str string;
+		var name str;		//Here str acts like an alias for string.
+	-> The main use case of this is to extend the builtin types and add a new functions to it.
+		Eg func (str) printMyString() {}
+	
