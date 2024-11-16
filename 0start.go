@@ -1,5 +1,7 @@
 package main
 
+import "github.com/suraj8108/learnGo/interfacelearn"
+
 func main() {
 	// Invoking Investment calculator
 	// investmentCalculator()
@@ -20,6 +22,12 @@ func main() {
 	// learnCustomErrors()
 
 	//Learn Struct
-	learnStruct()
+	// learnStruct()
+
+	//1.18 Struct Lab
+	// structlab.ExportStruct()
+
+	// 2.1 Interface in Go
+	interfacelearn.LearnInterface()
 
 }

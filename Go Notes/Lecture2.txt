@@ -1,0 +1,45 @@
+2.1 Interfaces in Go
+	-> Its like a contract if signed you will have to implement all the functions of the interface.
+	-> Eg: type <interface_name> interface {
+			Save() error
+		}
+	-> Interface os of type so it can be passed as parameter.
+	-> Two struct if implements all the function of interface then it can be used as one of the type of interface.
+	
+	Embedded Interface
+		We can have interface inside another interface. It depicts that the struct that implements the outer interface should implement all the methods of the inner 
+		interface as well
+		Eg: type student interface{
+				getName()
+				getRoll()
+			}
+			
+			type monitor interface {
+				student,
+				getClassName()
+			}
+	
+	Any parameter
+		-> In go we define a parameter type "interface {}" which depicts this accepts any type of value.
+		-> You can alternativly use "any". That is an alias for the special "any value is allowed" type.
+	
+	Working with type 
+		We can check the type of incoming interface
+		Eg: value.(type) // returns data type of an interface value. It works only with switch
+	
+	Extracting Type Information
+		We can extract the value from the given interface.
+			// value is an interface. Below we are converting interface to int.
+		Eg: typedVal, ok := value.(int)  // typedVal get the original value where Go knows its type and ok returns boolean is value of type int or not.
+			typesVal1, ok := value1.(int) // Converting value1 interface to int.
+			
+			// value1 + value2   -> This will give an error as interface addition operation can not be performed.
+			// typedVal + typesVal1 -> This will not give an error.
+
+	
+	Generics in Go:
+		We can give generic names to the interface and use that as the type.
+
+Arrays in Java
+	-> Defining array 
+		

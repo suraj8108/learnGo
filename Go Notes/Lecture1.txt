@@ -1,4 +1,4 @@
-Go Language
+1.1 Go Language
 	-> OpenSource
 	-> Functionalities
 		-> Simplicity, Scalability, Clarity
@@ -11,22 +11,22 @@ Go Language
 		-> Microservices
 		-> CLI Tools
 	
-List of Rules
+1.2 List of Rules
 	-> Package name is the mandatory.
 	-> There are multiple ways to execute a go code one is to use "go run " command and another is to create executable file.
 	-> Go can have multiple go file with package as main but one we cannot have the multiple main function in the main package.
 
-Package
+1.3 Package
 	-> Multiple go files can have the same package name. 
 	-> It helps to reuse the code.
 	-> The term "main" for the package is given to inform the compiler that where starting point of execution of the program.
 
-Module
+1.4 Module
 	-> Go understand both the module and package
 	-> A single project has single module and inside that module it will have multiple packages.
 	-> Command "go mod init <module-name>" create a go.mod file containing the module name and details.
 	
-Values & Types
+1.5 Values & Types
 	-> Variable name is prefered to be a camel Casing.
 	-> We can declare variable and constant outside of the functions.
 	
@@ -36,7 +36,7 @@ Values & Types
 			OR 
 	-> Other way to define a varibale ie to use (:=) to directly assign a value.
 	
-	Basic Typesx.
+	Basic Types.
 		-: int, float, string, bool
 		-: Niche Basic Types (uint, int32 ....)
 	
@@ -49,7 +49,7 @@ Values & Types
 	Constant Values
 		-> use the const keyword 
 
-Formatting Strings
+1.6 Formatting Strings
 	fmt.Printf 
 		-> %v (represent value of a varable)
 		-> %.0f -> (f stands for float and 0 represent the precision of the float value )
@@ -69,19 +69,19 @@ Formatting Strings
 	Multiline Strings
 		We can use (``) to for multiline strings.
 
-strconv package
+1.7 strconv package
 	-> strconv package is used to convert the string to float, int ....
 
-Functions
+1.8 Functions
 	-> Code on demand
 	-> We can have multiple return types from a single function defined in curly braces.
 	-> We can name the return type variable name while defining the function which creates a variable with default value. No need to return any thing in that case.
 	
-Control Statement
+1.9 Control Statement
 	-> if .. else if statements
 	-> Does not requires the round bracket around the conditions.
 
-For Loop
+1.10 For Loop
 	-> Looping using break and continue.
 	
 	Conditional For Loops
@@ -89,22 +89,24 @@ For Loop
 				// do something ...
 		}
 		-> This loops runs till the conditions gets failed.
-Switch:
+1.11 Switch:
 	-> Runs based on choice
+	-> In this we do not have to explicity write "break". Go automaticall adds the "break" in each case.
 
 
-Writing to files:
+1.12 Writing to files:
 	-> Use of Go standard library "os"
 	-> os.WriteFile("messageSwitch.txt", []byte(msg), 0644) -> 0644 represent the permission
 
-Error in GoLang
+1.13 Error in GoLang
+	-> "errors" is the inbuilt library in Go which can create a new errors. errors.New("Description of the error").
 	-> We do not have try catch block in GoLang but we can check the error using the If else conditions
 
-panic()
+1.14 panic()
 	-> It halts the program execution.
 	-> It can output the error message panic("Can not process further")
 
-Package in Go
+1.15 Package in Go
 	-> You can access the functions and variables of same package without importing it.
 	-> We can create a multiple package with different names.
 		-> The constraint with the package we have is that one folder can have one package name for all go files.
@@ -115,7 +117,7 @@ Package in Go
 				Eg: import "github.com/suraj8108/learnGo/newPackage"
 		-> (IMP) In Go you can export the function, variable and constant only if that starts with the uppercase. Else it can not be imported.
 
-Pointers
+1.16 Pointers
 	What are Pointers
 	-> Variable that stores address instead of value.
 	-> Go has a Garbage collector which is a process that cleans up unused data.
@@ -128,7 +130,7 @@ Pointers
 	-> nil represents the absence of an address value - i.e., a pointer pointing at no address / no value in memory.
 
 
-Struct & Custom Types
+1.17 Struct & Custom Types
 	Struct is like grouping of the different common variables.
 	Eg: type <struct-name First upercase name defines that whether its public or not> struct {}
 	You can also pass the struct as the parameter as a value or the pointer reference.
@@ -163,12 +165,14 @@ Struct & Custom Types
 		Eg: type Note struct {
 				Title string `json:"title"`
 			}
-		
+	Exporting Struct to file
+		-> We can use the json.Marshal function to convert the Struct to byte stream.
+		-> While transfarring the data from struct to file we need to keep all the field of struct to be Public(Uppercase) in order to export it. As the "os" library in the 
+		   Other package tries to access the field of struct.
 
-Custom Type in Go
+1.18 Custom Type in Go
 	-> We can create alias to the built in type and use it.
 	Eg: type str string;
 		var name str;		//Here str acts like an alias for string.
 	-> The main use case of this is to extend the builtin types and add a new functions to it.
 		Eg func (str) printMyString() {}
-	
