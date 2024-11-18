@@ -40,6 +40,103 @@
 	Generics in Go:
 		We can give generic names to the interface and use that as the type.
 
-Arrays in Java
+2.2 Arrays in Java
 	-> Defining array 
+		var <variableName> [<length>]string
+		Similar to java we can access and update the arrays.
+	-> 	Slices -> A window of an array.
+			newArray := array[0:3] // 0 included and 3 excluded
+			Slices is an part of window of an array, Any change in the value of sliced element it will change it in the original array as well.
+	-> 	len(<sliceName>), cap(<sliceName>) // len share the number of element currently present and cap shares the whole capacity of the slice.
+			newArray :=  []string {"Suraj", "Anand", "Astha", "Jyoti"}
+			sliceElem := newArray[1:3]
+			len(sliceElem) 	// Outputs 2
+			cap(sliceElem)  // Outputs 3 because slice takes the whole right capacity of newArray, capacity is extendable to right not to the left.
 		
+	Dynamic List with slices
+		prices := []float64 {10.99, 8.99} 	// Dynamic sizing of the slice
+		updatedSlices := append(prices, 5.99)				// Append creates a new slice and appends the value to it.
+	
+	To Merge different slices we can use (...) operator
+	goals1 := []string {"A", "B"}
+	goals2 := []string {"C", "D"}
+	goals4 := append(goals1, goals2...)
+
+2.3 Map in Go Lang
+	-> Creating Map syntax
+		map[string]string		-> map[<datatype or customtype>]<datatype or customtype>
+		websites := map[string]string {"google" : "google.com"}
+		googleURL := websites["google"]
+		delete(googleURL , "google")
+		
+2.4 make() functions
+	
+	Advatage of using make function is that go has to each time allocate a memory if we create a slice or map by basice approach whenever there is an increase
+	in the size, but using make function we can allocate some predefined size and go will create that slice or map for the first time with that much size.
+	
+	Slices
+	-> syntax make([]string, 2)			// make([]<slicetype>, <optional, intialsize a size of an array>, <optional, maximum number of array elements allowed>)
+		// Make at start initalizes the array with size provided and adding default value to it.
+	
+		
+	Map
+		-> make(map[string]string, 3)	// make(map[string]string, 3)
+		
+	Type Alias 
+		We can create a type alias and use it in make function. 
+		
+		type floatMap map[string]string;
+		func (m floatMap) output() {
+			fmt.Println(m);
+		}
+		websites :=	make(floatMap, 2)
+		websites["google"] = "google.com"
+		websites.output();
+	
+	For loops
+		-> Slices
+			for index, user := range userNames {}
+		-> Maps
+			for key, value := range websites {}
+			
+		
+2.5 Depeer in to Functions
+	1. Using function as parameter value
+		-> We can pass function as the parameter in the another function
+		-> Eg: func usersMotherLanguage(user string, getUserMotherLanguage func (string) string)
+		
+		-> Alias Function Type 
+			We can also assign an alias to the function name and pass it to the function
+			type fetchMLanguage func(string) string
+			func usersMotherLanguage(user string, getUserMotherLanguage fetchMLanguage)
+		
+		-> We can similarly do for returning functions as value in Go as we did for passing a function as parameter.
+			
+			
+	2. Anonymous function
+		-> We can create an anonymous function in an single line and pass it to the function as parameter
+		
+		-> Passing Anonymous function as a parameter
+			func performAddition(a int, b int, func(int, int) int { 
+				return a + b;
+				})
+		
+		-> Returning Anonymous function 
+			-> We can return the anonymous functions from the another function as shown below.
+			Eg: func translateNumber(factor int) func (int) int {
+				return func(int number) int {
+					return number*factor;   		// factor variable gets lockedin in this function
+				}
+			}
+		-> Closures
+			-> Every anonymous function is a closure.
+			-> If we use the variable from outer scope in an anonymous function then it gets locked in to the anonymous function. This is called closure.
+			
+				
+				
+	3. Recursion
+		-> Same as Java
+	4. Variadic function
+		-> Functions where we can pass multiple argument by just defining one single parameter in the function
+		-> Eg: func sumup(number ...int) {}
+

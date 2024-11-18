@@ -1,6 +1,6 @@
 package main
 
-import "github.com/suraj8108/learnGo/interfacelearn"
+import "github.com/suraj8108/learnGo/learnfunc"
 
 func main() {
 	// Invoking Investment calculator
@@ -28,6 +28,16 @@ func main() {
 	// structlab.ExportStruct()
 
 	// 2.1 Interface in Go
-	interfacelearn.LearnInterface()
+	// interfacelearn.LearnInterface()
+
+	// 2.2 Array in Go
+	// learnarray.Learnarray()
+
+	//2.3 & 2.4 Map and make functions
+	// learnmap.Learnmap()
+
+	//2.5 Learn deep dive on functions
+	// learnfunc.LearnFunctionAsParam()
+	learnfunc.LearnClosure()
 
 }
