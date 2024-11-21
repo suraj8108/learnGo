@@ -140,3 +140,23 @@
 		-> Functions where we can pass multiple argument by just defining one single parameter in the function
 		-> Eg: func sumup(number ...int) {}
 
+2.6 Concurrency - Running tasks in parallel
+	GoRoutines
+		-> Running program parallely.
+		-> If we use the following term it dispatches to goroutine
+			go fmt.Println("Hello");
+	
+	Channel
+		-> Mode of communication while working with goroutine
+		-> Creating a channel
+			done := make(chan bool)
+			go greet(done)				// Passing channel to goroutine
+		
+		-> Updating data in goroutine
+			done <- true
+		
+		-> Channel is the medium to call the goRoutines, if we do not call the channel we wont be calling the goroutine
+	
+	Select:
+		-> It is similar to switch statement with cases where in cases it selects the channel
+		-> The first channel that is set in the goroutine will be called in the switch statement.

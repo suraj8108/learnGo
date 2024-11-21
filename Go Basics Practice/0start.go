@@ -1,6 +1,8 @@
 package main
 
-import "github.com/suraj8108/learnGo/learnfunc"
+import (
+	"github.com/suraj8108/learnGo/learnconcurrency"
+)
 
 func main() {
 	// Invoking Investment calculator
@@ -38,6 +40,9 @@ func main() {
 
 	//2.5 Learn deep dive on functions
 	// learnfunc.LearnFunctionAsParam()
-	learnfunc.LearnClosure()
+	// learnfunc.LearnClosure()
+
+	//2.6 Learn Concurrency
+	learnconcurrency.Learnconcurrency()
 
 }
