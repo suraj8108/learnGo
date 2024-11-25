@@ -45,3 +45,80 @@ This is an Event Management application where a user can create an event and mak
 ```sh
 curl --location 'http://localhost:8080/events'
 ```
+
+### Get An Event by Id
+
+```sh
+curl --location 'http://localhost:8080/events/1'
+```
+
+### Create an Event
+
+```sh
+curl --location 'http://localhost:8080/events' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name" :"Coldplay Event1",
+    "description" : "Foreginer Band",
+    "location" : "Pune",
+    "dateTime" : "2025-01-01T15:30:00.000Z"
+}'
+```
+
+### Update an Event
+
+```sh
+curl --location --request PUT 'http://localhost:8080/events/5' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cmFqQGdtYWlsLmNvbSIsImV4cCI6MTczMjUzNzgzMiwidXNlcklkIjo0fQ.DvffddiOT9pkPnc-BOrJ1euockG8eVlX4-6RdPeexFE' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name" :"Coldplay Event1",
+    "description" : "Foreginer Band Canceller",
+    "location" : "Pune",
+    "dateTime" : "2025-01-01T15:30:00.000Z"
+}'
+```
+
+### Delete an Event
+
+```sh
+curl --location --request DELETE 'http://localhost:8080/events/3' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuYW5kQGdtYWlsLmNvbSIsImV4cCI6MTczMjUzNDU4NiwidXNlcklkIjozfQ.zYV4h5rIsGykaiI4MTLbh_69qQst2GNbAHzxF6AlyaM'
+```
+
+### User Registration
+
+```sh
+curl --location 'http://localhost:8080/signup' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "suraj@gmail.com",
+    "password" : "changeit"
+}'
+```
+
+### User Login (Generates JWT Token)
+
+```sh
+curl --location 'http://localhost:8080/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "suraj@gmail.com",
+    "password" : "changeit"
+}'
+```
+
+### User Registration for an event
+
+```sh
+curl --location --request POST 'http://localhost:8080/events/6/register' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cmFqQGdtYWlsLmNvbSIsImV4cCI6MTczMjU0MjIzNCwidXNlcklkIjo0fQ.De7NJ5vQ59mEJzRRv_7Ykfld6UvUdyN_-fd83H5ho3w'
+
+```
+
+### Delete User Registration for an event
+
+```sh
+curl --location --request DELETE 'http://localhost:8080/events/6/register' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cmFqQGdtYWlsLmNvbSIsImV4cCI6MTczMjU0MjIzNCwidXNlcklkIjo0fQ.De7NJ5vQ59mEJzRRv_7Ykfld6UvUdyN_-fd83H5ho3w'
+```
