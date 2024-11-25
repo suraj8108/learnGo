@@ -1,0 +1,38 @@
+1. Download http (Advance version is github.com/gin-gonic/gin Framework)
+2. Database connection code
+
+Instead of writing this code (in the next lecture):
+
+var DB \*sql.DB
+
+func InitDB() {
+DB, err := sql.Open("sqlite3", "api.db")
+
+    if err != nil {
+        panic("Could not connect to database.")
+    }
+
+    DB.SetMaxOpenConns(10)
+    DB.SetMaxIdleConns(5)
+
+    createTables()
+
+}
+You should write this:
+
+var DB \*sql.DB
+
+func InitDB() {
+var err error
+DB, err = sql.Open("sqlite3", "api.db")
+
+    if err != nil {
+        panic("Could not connect to database.")
+    }
+
+    DB.SetMaxOpenConns(10)
+    DB.SetMaxIdleConns(5)
+
+    createTables()
+
+}

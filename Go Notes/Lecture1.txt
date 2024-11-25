@@ -141,6 +141,8 @@
 	NOTE: When a function is associated to a struct it can be associated either as value or as pointer. (<variableName> structName) OR (<variableName> *structName). 
 		  There no much difference between them its just that operation performed on struct field in pointer one will do the changes in that original struct but same wont happen 
 		  with the value one.
+		  We can not call this function directly. As it has become part os struct so similar to class we need create a struct and then we can call this function 
+		  via that struct
 	
 	Function Used to create a new Struct (Constructor) -:
 		This function accepts the list of parameter of struct and return the new struct pointer.
