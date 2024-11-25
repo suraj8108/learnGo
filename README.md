@@ -1,7 +1,27 @@
 # learnGo
 
-This repository contains the Notes and practice Labs which was created while learning Go Language
+From Zero to becoming Hero in Go Language 😊
 
-## Refer the below page for detailed go codes
+## Course Referred While Learning Go
+
+**Go - The Complete Guide** (Udemy Course)  
+Instructor: Maximilian Schwarzmüller
+
+## Folder Details
+
+### Go Notes 📚
+
+Contains notes related to the basics of the Go language.
+
+### Go Basic Practice 🛠️
+
+Contains practice labs.
+
+## Additional Resources 🌐
+
+Refer to the following page for detailed Go codes:  
+Go Complete Guide Resources
 
 https://github.com/mschwarzmueller/go-complete-guide-resources
+
+Happy coding! 😊
