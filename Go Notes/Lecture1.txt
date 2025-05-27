@@ -1,180 +1,546 @@
-1.1 Go Language
-	-> OpenSource
-	-> Functionalities
-		-> Simplicity, Scalability, Clarity
-		-> High Performance & Focus on concurrency
-		-> Standard Libraries & Code Features are built in.
-		-> Static Typing
-	
-	Mostly Used in
-		-> Networking and API's
-		-> Microservices
-		-> CLI Tools
-	
-1.2 List of Rules
-	-> Package name is the mandatory.
-	-> There are multiple ways to execute a go code one is to use "go run ." command and another is to create executable file.
-	-> Go can have multiple go file with package as main but one we cannot have the multiple main function in the main package.
+https://www.geeksforgeeks.org/golang-tutorial-learn-go-programming-language/
 
-1.3 Package
-	-> Multiple go files can have the same package name. 
-	-> It helps to reuse the code.
-	-> The term "main" for the package is given to inform the compiler that where starting point of execution of the program.
+https://www.youtube.com/watch?v=8uiZC0l4Ajw
 
-1.4 Module
-	-> Go understand both the module and package
-	-> A single project has single module and inside that module it will have multiple packages.
-	-> Command "go mod init <module-name>" create a go.mod file containing the module name and details.
-	
-1.5 Values & Types
-	-> Variable name is prefered to be a camel Casing.
-	-> We can declare variable and constant outside of the functions.
-	
-	-> Go infers the type of a variable based on the value assigned else one has to explicity define the type.
-	-> var <list of variableName> <type> = <list of values>
-	-> NOTE: Type needs to be assigned at last and same type is assigned to all the variable.
-			OR 
-	-> Other way to define a varibale ie to use (:=) to directly assign a value.
-	
-	Basic Types.
-		-: int, float, string, bool
-		-: Niche Basic Types (uint, int32 ....)
-	
-	Null Values
-		:= int has 0
-		:= float64 has 0.0
-		:= string has ""
-		:= bool has false
-	
-	Constant Values
-		-> use the const keyword 
+https://gobyexample.com/hello-world
 
-1.6 Formatting Strings
-	fmt.Printf 
-		-> %v (represent value of a varable)
-		-> %.0f -> (f stands for float and 0 represent the precision of the float value )
+Go Language
+
+-----------------
+INTRODUCTION
+-----------------
+
+	=> About
+		* Procedural Programming Language - Works with function and all.
+		* Dynamic languages Eg: Type inference := 
+		* Statically Typed language - Type in known at compile time rather at runtime.
+		* Garbage-collected programming language
+		* Support for concurrency through Goroutines and channels.
+		* Automatically Manages memory - restricts memory leaks and errors.
+		* OpenSource
+		
+	=> Functionalities
+		* Simplicity, Scalability, Clarity
+		* High Performance & Focus on concurrency
+		* Standard Libraries & Code Features are built in.
+		* Static Typing
 	
-	fmt.Sprintf
-		-> Used to generate and store the value of the string in an varable
+	=> Mostly Used in
+		* Networking and API's
+		* Microservices
+		* CLI Tools
+		
+		Companies using Go
+			* Kubernates
+			* DropBox
+			* Netflix
 	
-	fmt.Scan()
-		-> Takes the single value input from the user via console.
+	=> Advantage:
+		* Flexible, Concurrent, Library, Performance
 	
-	// Accepting the longer input use bufio package
+	=> DisAdvantage:
+		* No support for Generics which make difficult to reuse the code.
+		* Limited OOPs Features: Does not have Polymorphism or Inheritance
+	
+	GoLang eliminates the problem of existing language:
+		=> Python: It is easy to use but slow in comparison to Golang. 
+		=> Java: It has a very complex type system.
+		=> C/C++: It has slow compilation time as well as a complex type system.
+		
+		=> All these languages were designed when multi-threading applications were rare, so not very effective to highly scalable, 
+			concurrent and parallel applications.
+		=> Threading consumes 1MB whereas Goroutine consumes 2KB of memory, hence at the same time, we can have millions of goroutine triggered.
+	
+	Go Programming Language Key Features :
+		=> Compilation time of Golang is fast access to others.
+		=> Support concurrency and lightweight processes.
+		=> Golang supports Interfaces.
+		=> Go language programming supports generic programming.
+		=> It supports assertions.
+		
+
+-----------------
+Lexer in GoLang
+-----------------
+
+	-> Validates the grammer of the program
+	-> Prior to compilation it checks all the rules in the code.
+	-> Lexer can add the semicolon
+	
+	Lexer list of Rules
+		* Package name is the mandatory.
+		* There are multiple ways to execute a go code one is to use "go run ." command and another is to create executable file.
+		* Go can have multiple go file with package as main but one we cannot have the multiple main function in the main package.
+
+	Package Rules
+		* Multiple go files can have the same package name. 
+		* It helps to reuse the code.
+		* The term "main" for the package is given to inform the compiler that where starting point of execution of the program.
+
+	Module
+		* Go understand both the module and package
+		* A single project has single module and inside that module it will have multiple packages.
+		* Command "go mod init <module-name>" create a go.mod file containing the module name and details.
+
+-----------------
+Data Types
+-----------------
+
+	* Variable type should be known in advance.
+	* In Go everything is a type.
+	Data Types:
+		=> Basic type: 
+			* Numbers
+				1. Integer - byte, int8, int16, int32, int64,
+				2. Floating Point Number - float32, float64
+				3. Complex Numbers - complex32, complex64
+			* Strings
+				=> String is a sequence of immutable bytes.
+				=> Strings can be concatenated using plus(+) operator.
+				
+			* Booleans 
+			* Null Values
+				:= int has 0
+				:= float64 has 0.0
+				:= string has ""
+				:= bool has false
+		
+		=> Aggregate type: Array, structs, map, come under this category.
+		
+		=> Reference type: Pointers, slices, maps, functions, and channels come under this category.
+		
+		=> Interface type: Any variable can be transformed to interface type.
+
+------------------
+Identifiers in Go
+------------------
+		- Variable Naming conventions:
+	
+			* Variable name is prefered to be a camel Casing.
+			* Variable names must begin with a letter or an underscore(_). And the names may contain the letters ‘a-z’ or ’A-Z’ or digits 0-9 
+				as well as the character ‘_’.			Eg: _name
+			* Variable can not start with the digit. 	Eg: 123name
+			* Variables are case sensitive. 			Eg: geeks and Geeks are two different variables
+			* Keywords is not allowed to use as a variable name.
+			* We can declare variable and constant outside of the functions.
+			
+		- Variable represented with underscore(_):
+			* Special kind of indentifier know as blank identifier.
+			* Stores the blank value.
+			* You can use any value of any type with the Blank Identifier.
+			* Eg: firstName, _: userFullName();
+		
+		- Exported Variable:
+			* The identifier which is allowed to access it from another package is known as the exported identifier. 
+			* The first character of the exported identifier’s name should be in the Unicode upper case letter.
+			* The identifier should be declared in the package block or be a variable, function, type, or method name within that package.
+			* Eg: var ExportedVar = "Exported Value"
+		
+		- Declaring a Variable:
+			=> Declare using Var Key Word
+				* Syntax: var variable_name type = expression
+				* In the above syntax, either type or = expression can be omitted, but not both.
+				* There is no such concept of an uninitialized variable in Go language.
+			
+			=> Declare using Var Key Word for Multiple variables
+				* Syntax: var <list of variableName> <type> = <list of values>
+					Eg:  var firstName, lastName string = "Suraj", "Yadav"
+				
+				* If we remove type we can declare multiple variables of different types in same line
+					Eg: var firstName, age, number = "Suraj", 24, 9496554
+			
+			=> Use Short Variable declaration
+				* Syntax: variable_name:= expression
+				* Short declarion can initialize a set of variables by the calling function that returns multiple values.
+				
+				* Short declaration behaves differently in the same lexical block (scope) or in an outer block.
+					-> Same Lexical Block: 
+						:- If a variable is already declared in the same block, := acts like an assignment for that variable.
+					
+					-> Outer Block: 
+						:- If a variable is declared in an outer block, it is ignored, and := will not reassign it. 
+						:- Instead, it will declare a new variable in the current block.
+					
+					-> At Least One New Variable: 
+						:- At least one of the variables on the left side of := must be a new variable.
+						
+--------------------
+Constant in GoLang
+--------------------
+		-> Once defined can not be modified further.
+		-> Constants are declared like variables but in using a const keyword as a prefix to declare a constant with a specific type. 
+			Eg: const cntName = "INDIA"	/ const cntName string = "INDIA"
+		-> It cannot be declared using “:=” syntax. 
+	
+-----------------
+Go Operators
+-----------------
+	
+	- Arithmetic Operator
+		-->  +, -, /, %
+		
+	- Relational Operator
+		--> ==, !=, >, < 
+		
+	- Logical Operator
+		--> Logical AND, Logical OR, Logical NOT
+	
+	- Bitwise Operator
+		--> AND, OR, NOT, Left Shift, Right Shift
+	
+	- Assignment Operator
+		--> =, -=, +=, /=, %= 
+	
+	- Misc Operator
+		--> &, *, <-
+
+-----------------
+Formatting Strings
+-----------------
+	=> fmt.Printf 
+		* %v (represent value of a variable)
+		* %.0f -> (f stands for float and 0 represent the precision of the float value)
+		* %T	-> To get the Type of the variable.
+	
+	=> fmt.Sprintf
+		* Used to generate and store the value of the string in an variable.
+	
+	=> fmt.Scan()
+		* Takes the single value input from the user via console.
+		.Scan() 	-> This reads a single word input.
+		.Scanln() 	-> This reads input until a newline is encountered.
+		.Scanf() 	-> This reads formatted input.
+	
+	Accepting the longer input use bufio package
 		Eg: reader := bufio.NewReader(os.Stdin)
-			text, err := reader.ReadString('\n')					// Read the string till the next line. text variable will contain the \n as well which needs to be trimed.
+			text, err := reader.ReadString('\n')	// Read the string till the next line. text variable will contain the \n as well which needs to be trimed.
 			text = strings.trim(text, "\n")
 			
-	
 	Multiline Strings
 		We can use (``) to for multiline strings.
 
-1.7 strconv package
-	-> strconv package is used to convert the string to float, int ....
+-------------------
+Control Statement
+------------------- 
 
-1.8 Functions
-	-> Code on demand
-	-> We can have multiple return types from a single function defined in curly braces.
-	-> We can name the return type variable name while defining the function which creates a variable with default value. No need to return any thing in that case.
-	
-1.9 Control Statement
-	-> if .. else if statements
+	-> if .. else if .. else statement
 	-> Does not requires the round bracket around the conditions.
+	-> There is no ternary in Go, so you’ll need to use a full if statement even for basic conditions.
 
-1.10 For Loop
-	-> Looping using break and continue.
+-----------------
+Loops in Go
+-----------------
 	
-	Conditional For Loops
-		for someCondition {
-				// do something ...
-		}
-		-> This loops runs till the conditions gets failed.
-1.11 Switch:
-	-> Runs based on choice
-	-> In this we do not have to explicity write "break". Go automaticall adds the "break" in each case.
-
-
-1.12 Writing to files:
-	-> Use of Go standard library "os"
-	-> os.WriteFile("messageSwitch.txt", []byte(msg), 0644) -> 0644 represent the permission
-
-1.13 Error in GoLang
-	-> "errors" is the inbuilt library in Go which can create a new errors. errors.New("Description of the error").
-	-> We do not have try catch block in GoLang but we can check the error using the If else conditions
-
-1.14 panic()
-	-> It halts the program execution.
-	-> It can output the error message panic("Can not process further")
-
-1.15 Package in Go
-	-> You can access the functions and variables of same package without importing it.
-	-> We can create a multiple package with different names.
-		-> The constraint with the package we have is that one folder can have one package name for all go files.
-		-> You need to create a new subfolder for new sub package.
-		-> The folder name and the package name should be same.
+	1. Simple for Loop
 		
-		-> While importing you need to give the project name(in go.mod file) followed by the package name.
-				Eg: import "github.com/suraj8108/learnGo/newPackage"
-		-> (IMP) In Go you can export the function, variable and constant only if that starts with the uppercase. Else it can not be imported.
+		Syntax:
+			for initialization; condition; post {
+				// statements....
+			}
+		NOTE: Do not use round brackets else it will throw error.
+		
+	2. For loop as Infinite Loop
+		* We can use break to break it.
+		Syntax:
+			for{
+				// Statement...
+			}
+			
+	3. for loop as while Loop
+		Syntax:
+			for someCondition {
+				// do something ...
+			}
+		* This loops runs till the conditions gets failed.
+	
+	4. Simple range in for loop
+		
+		* For Array
+			for i, j:= range rvariable{
+				// statement..
+			}
+		
+		* For String 
+			for index, chr:= range str{
+				// Statement..
+			}
+		* For Maps
+			for key, value := range map { 
+				// Statement.. 
+			}
+		* for item := range Chnl { 
+				// statements..
+			}
+	
+	IMP Points:
+		-> The curly braces are mandatory in for loop.
+		-> The opening brace should be in the same line in which post statement exists.
+		-> If the array, string, slice, or map is empty, then for loop does not give an error and continue its flow. 
+			Or in other words, if the array, string, slice, or map is nil then the number of iterations of the for loop is zero.
 
-1.16 Pointers
-	What are Pointers
-	-> Variable that stores address instead of value.
-	-> Go has a Garbage collector which is a process that cleans up unused data.
+-----------------
+Switch
+-----------------
+https://www.geeksforgeeks.org/switch-statement-in-go/?ref=next_article
+	-> Two types of Switch statement:
+		* Expression Switch
+			-> with Optional Statement (e.g., variable declaration)
+				Eg: switch optstatement; optexpression { }
+				
+			-> with Optional Expression (if omitted, it defaults to true)
+				Eg: switch { optstatement==2.. }
+		
+		* Type Switch
+		
+	-> In this we do not have to explicity write "break". Go automatically adds the "break" in each case.
+
+-----------------
+Conversion in Go
+-----------------
+	-> strconv package is used to convert the string to float, int ....
+	-> Eg:
+		* b, err := strconv.ParseBool("true")
+		* f, err := strconv.ParseFloat("3.1415", 64)
+		* i, err := strconv.ParseInt("-42", 10, 64)
+		* u, err := strconv.ParseUint("42", 10, 64)
+		
+		* strconv.Atoi(s string) (int, error): 
+			Converts a string to an integer.
+		
+		* strconv.Itoa(i int) string: 
+			Converts an integer to a string
+		
+		* ParseFloat(s string, bitSize int) (float64, error): 
+			Converts a string to a float. The bitSize argument specifies the precision (32 for float32, 64 for float64).
+		
+		* FormatFloat(f float64, fmt byte, prec, bitSize int) string: 
+			Converts a float to a string. The fmt argument specifies the format (e.g., 'f' for decimal), prec specifies the precision, and bitSize specifies 
+			the precision (32 for float32, 64 for float64).
+		
+		* ParseBool(s string) (bool, error): Converts a string to a boolean
+		
+		* FormatBool(b bool) string: Converts a boolean to a string
+
+	time in Go
+		-> Functions in Time
+			* presentTime := time.Now()
+			* time.Sleep(1000*time.Milliseconds)
+
+----------------------------
+Memory Management in Go
+----------------------------
+
+	* Memory allocation and deallocation happens automatically.
+	* new() and make() are used to allocate a memory for array, stack, etc	
+		-> new()
+			1. Allocates memory for a variable of a specified type and returns a pointer to it, but it does not initialized.
+			2. We will get a memory address
+			3. zeroed storage - you can not put a data
+		
+		-> make()
+			1. Allocates a memory and initialized as well.
+			2. We will get a memory address
+			3. nonzeroed storage - you can put a data
+	* Garbage collection happens automatically.
+			
+-----------------
+Pointers in Go:
+-----------------
+
+	* Variable that stores address instead of value.
+	* Go has a Garbage collector which is a process that cleans up unused data.
+	* The null value of the pointer in Go is "nil" - a special value built in Go.
+	* nil represents the absence of an address value - i.e., a pointer pointing at no address / no value in memory.
+	
+	Delaring Pointers:
+		var name *string
 	
 	Advantage of Pointers
-		-> Avoid Unnecessary value copies
-		-> Direct Mutate values.
+		* Avoid Unnecessary value copies
+		* Direct Mutate values.
 	
-	-> The null value of the pointer in Go is "nil" - a special value built in Go.
-	-> nil represents the absence of an address value - i.e., a pointer pointing at no address / no value in memory.
+	Pointers are used when :
+		1. You want to avoid copying large structs by passing references instead.
+		2. You need to modify the original struct values from within a function.
+		3. You want to improve performance by reducing memory usage.
 
+-------------------
+Strings in Go
+-------------------
 
-1.17 Struct & Custom Types
-	Struct is like grouping of the different common variables.
-	Eg: type <struct-name First upercase name defines that whether its public or not> struct {}
-	You can also pass the struct as the parameter as a value or the pointer reference.
 	
-	We can attach the functions to the struct.
-	func (<variableName> structName) functionName() {}
+	* Strings in Go is immutable. Compiler will throw error in case if you try to change a value of it.
+	* Looping of element in string can be done using range for loop.
+	* Access individual byte of a string be done by a[0].
 	
-	NOTE: When a function is associated to a struct it can be associated either as value or as pointer. (<variableName> structName) OR (<variableName> *structName). 
-		  There no much difference between them its just that operation performed on struct field in pointer one will do the changes in that original struct but same wont happen 
-		  with the value one.
-		  We can not call this function directly. As it has become part os struct so similar to class we need create a struct and then we can call this function 
-		  via that struct
+	* Trim String in Go:
+		
+		1. strings.Trim(name, " ");			// (string, cutset) - Trimes the cutset from both the side of a string.
+		2. strings.TrimSpace(name);			// Trims the space from both the side of string.
+		3. strings.TrimLeft(name, cutset);	// Removes specified characters from the start of a string.
+		4. strings.TrimRight(name, cutset); // Removes specified characters from the end of a string.
 	
-	Function Used to create a new Struct (Constructor) -:
-		This function accepts the list of parameter of struct and return the new struct pointer.
-		Generally the Contructor name is given as "New" and it may contain the validation logic.
+	* Split String in Go:
+		
+		1.  strings.Split(s, sep string)
+			-> The Split function divides a string into all substrings separated by the specified separator and returns a slice with these substrings.
+			-> s: The string to be split.
+			-> sep: The separator. If sep is empty, it splits after each UTF-8 character. If both str and sep are empty, it returns an empty slice.
 	
-	Package in Struct:
-		We can export the struct outside of the package by keeping the fist letter of the struct as Uppercase.
-		NOTE: Just keeping the first letter of struct as Upper case does not makes the field of struct as public. 
-			  We can keep the few fields of struct as accessible outside of package and few as a private by following the upper case logic.
-	
-	Struct Embedding (In Java it refers to as an Inheritance):
-		The child struct has the abilities of the parent struct like its fields and methods access.
-		Egs:
-			type Admin struct {						type Admin struct {
-				fname	string							email 	string
-				lname	string							pass 	string
-				birthDate string						user 	User
-			}										}
-	
-	Struct Tags:
-		-> Its a meta data that we can add to the field of struct which names the field while exporting to the JSON.
-		Eg: type Note struct {
-				Title string `json:"title"`
-			}
-	Exporting Struct to file
-		-> We can use the json.Marshal function to convert the Struct to byte stream.
-		-> While transfarring the data from struct to file we need to keep all the field of struct to be Public(Uppercase) in order to export it. As the "os" library in the 
-		   Other package tries to access the field of struct.
+	* String Comparison:
+		
+		1. Using comparison operator 
+			a. str1 == str2  				// true if str1 equals str2
+			b. str1 < str2   				// true if str1 comes Lexicographical before str2
+		
+		2. Using strings.Compare
+			a. Strings.Compare(s1, s2)		// 0 -> s1 is equal to s2, 1 if s1 is lexicographically greater than s2
+			
+-------------------
+Arrays in GoLang
+-------------------
 
-1.18 Custom Type in Go
-	-> We can create alias to the built in type and use it.
-	Eg: type str string;
-		var name str;		//Here str acts like an alias for string.
-	-> The main use case of this is to extend the builtin types and add a new functions to it.
-		Eg func (str) printMyString() {}
+	-> Defining array 
+			* The length of the array is fixed and unchangeable.
+			* var <variableName> [<length>]type
+			* Similar to java we can access and update the arrays.
+			* In an array, if an array does not initialize explicitly, then the default value of this array is 0. 
+			* Array is of value type not of reference type. So when the array is assigned to a new variable, then the changes made in the 
+				new variable no change in original array.
+			* In an array, if the element type of the array is comparable, then the array type is also comparable. 
+				So we can directly compare two arrays using == operator
+				Eg: arr1 == arr2	// arr1 and arr2 size should be same.
+			
+	-> Shorthand array declaration:
+			* Eg: animals := [4]string {"Cat", "Dog", "Lion", "Fix"}
+			
+	-> Multi-Dimensional Array
+			* syntax: Array_name[Length1][Length2]..[LengthN]Type
+			
+		Copy an Array
+			* Using the FOR loop
+			* Direct Assignement:
+				-> You can assign one array to another if they are of the same type and length a new copy of array is created and stored in the new variable. 
+				-> This method doesn’t work with slices.
+			* Using Pointers (If Arrays are Large)
+				-> If you are working with large arrays and want to avoid copying, you can use pointers to reference the source array.
+				-> This won’t create a new array but will point to the existing array’s memory location.
+
+-------------------
+Slices in GoLang
+-------------------
+
+	Slice: Introduction 
+	
+		* Alternative and efficient way of array.
+		* It has dynamic size and added features.
+		* It represents the portion of an array.
+		* It is flexible, powerful and more convient than array.
+		* Slice is a variable-length sequence that stores elements of a similar type
+		* Eg: 
+			* 	Slices: A window of an array.
+				newArray := array[0:3] // 0 included and 3 excluded
+				Slices is an part of window of an array, Any change in the value of sliced element it will change it in the original array as well.
+		
+			* 	newArray :=  []string {"Suraj", "Anand", "Astha", "Jyoti"}
+				sliceElem := newArray[1:3]
+				len(sliceElem) 	// Outputs 2
+				cap(sliceElem)  // Outputs 3 because slice takes the whole right capacity of newArray, capacity is extendable to right not to the left.
+	
+	Slice: Declaration of Slice
+	
+		1. Using slice literal:
+			* var my_slice[]int OR my_slice := []int {} OR my_slice := []int {1,2,3}
+			* var my_slice[]int OR my_slice := []int {} -> Its does not contain reference array so len and cap will be 0 and  it points to nil
+			
+		2. Using Array
+			* mySlice := arr[1:2]
+		
+		3. Using already Existing Slice
+			* mySlice := oldSlice[1:2]
+		
+		4. Using make function
+			* mySlice := make([]int, 7, 10) // type, length, capacity
+			* mySlice := make([]int, 7) 	// type, length
+	
+		Components of Slice
+			* Pointer - The pointer is used to points to the first element of the array that is accessible through the slice.
+			* Length: The length is the total number of elements present in the array.
+			* Capacity: The capacity represents the maximum size upto which it can expand.
+	
+	Slice: Modifying of Slice
+	
+		* We can modify slice similar to arrays.
+		* If we try to update a value in slice whithout appending any thing then this will change it in referenced array as well but if any append happend on slice then modifying any value wont lead to change in referenced array.
+	
+	Slice: Sorting of Slice:
+		* 'sort' standard library is used to sort the slice of ints, float64s, and strings.
+		
+		* Sorting in Ascending order:
+			* sort.Strings(slc1)
+			* sort.Ints(slc2)
+			
+		* Sorting in Descending order:
+			* Custom comparison
+			* sort.Slice(intSlice, func(i, j int) bool {
+					return intSlice[i] > intSlice[j]
+				})
+		
+	Slice: Functions of Slices	
+		* append(my_slice, 1,2,3,4)			// append any number of element
+		* len(<sliceName>)					// len share the number of element currently present
+		* cap(<sliceName>) 					// cap shares the whole capacity of the slice.
+	
+	Slice: Dynamic List with slices
+		prices := []float64 {10.99, 8.99} 	// Dynamic sizing of the slice
+		updatedSlices := append(prices, 5.99)				// Append creates a new slice and appends the value to it.
+	
+	To Merge different slices we can use (...) operator
+	goals1 := []string {"A", "B"}
+	goals2 := []string {"C", "D"}
+	goals4 := append(goals1, goals2...)
+
+-----------------
+Map in Go Lang
+-----------------
+	-> Creating Map syntax
+		map[string]string		-> map[<datatype or customtype>]<datatype or customtype>
+		websites := map[string]string {"google" : "google.com"}
+		googleURL := websites["google"]
+		delete(googleURL , "google")
+	
+	-> Using make
+		lang := make(map[string]string)
+
+---------------------
+make() functions
+---------------------
+	
+	Advatage of using make function is that go has to each time allocate a memory if we create a slice or map by basice approach whenever there is an increase
+	in the size, but using make function we can allocate some predefined size and go will create that slice or map for the first time with that much size.
+	
+	Slices
+	-> syntax make([]string, 2)			// make([]<slicetype>, <optional, intialsize a size of an array>, <optional, maximum number of array elements allowed>)
+		// Make at start initalizes the array with size provided and adding default value to it.
+	
+		
+	Map
+		-> make(map[string]string, 3)	// make(map[string]string, 3)
+		
+	Type Alias 
+		We can create a type alias and use it in make function. 
+		
+		type floatMap map[string]string;
+		func (m floatMap) output() {
+			fmt.Println(m);
+		}
+		websites :=	make(floatMap, 2)
+		websites["google"] = "google.com"
+		websites.output();
+	
+	For loops
+		-> Slices
+			for index, user := range userNames {}
+		-> Maps
+			for key, value := range websites {}
+			

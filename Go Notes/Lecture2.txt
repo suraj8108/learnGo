@@ -1,4 +1,76 @@
-2.1 Interfaces in Go
+
+----------------
+Struct in Go
+----------------
+	
+	Basic Info 
+		* Struct is like grouping of the different common variables.
+		* Composite data type as it groups the two or more data types.
+		* Eg: type <struct-name First upercase name defines that whether its public or not> struct {}
+		* You can also pass the struct as the parameter as a value or the pointer reference.
+		* It can be termed as lighweight class, does not supports inheritance but supports composition.
+		* While intialization either pass the value one by one in an order or use the key:value pair concept.
+		* We can attach the functions to the struct.
+			func (<variableName> structName) functionName() {}
+	
+	Advantages of Struct:
+		* Encapsulation: Structures allow you to encapsulate related data together, making it easier to manage and modify the data.
+		* Code organization: Structures help to organize code in a logical way, which makes it easier to read and maintain.
+		* Flexibility: Structures allow you to define custom types with their own behavior, making it easier to work with complex data.
+		* Type safety: Structures provide type safety by allowing you to define the type of each field, which helps to prevent errors caused by assigning 
+			the wrong type of value.
+		* Efficiency: Structures in Go are very efficient, both in terms of memory usage and performance.
+		
+	DisAdvantages of Struct:	
+		* Complexity: Structures can make code more complex, especially if the structures have a large number of fields or methods.
+		* Boilerplate code: When defining large structures with many fields, it can be time-consuming to write out all of the field names and types.
+		* Inheritance: Go does not support inheritance, which can make it more difficult to work with large hierarchies of related data.
+		* Immutability: Go structures are mutable by default, which can make it more difficult to enforce immutability in your code.
+	
+	Important Points(NOTE)
+		* When a function is associated to a struct it can be associated either as value or as pointer. 
+			(<variableName> structName) OR (<variableName> *structName). 
+		* There no much difference between them its just that operation performed on struct field in pointer one will do the changes in that 
+		    original struct but same wont happen with the value one via that struct
+		* We can not call this function directly. As it has become part os struct so similar to class we need create a struct and then we can call this function 
+	
+	Nested Structure
+		* Struct inside another struct.
+	
+	
+	Function Used to create a new Struct (Constructor) -:
+		This function accepts the list of parameter of struct and return the new struct pointer.
+		Generally the Contructor name is given as "New" and it may contain the validation logic.
+	
+	Package in Struct:
+		We can export the struct outside of the package by keeping the fist letter of the struct as Uppercase.
+		NOTE: Just keeping the first letter of struct as Upper case does not makes the field of struct as public. 
+			  We can keep the few fields of struct as accessible outside of package and few as a private by following the upper case logic.
+	
+	Struct Embedding (In Java it refers to as an Composition):
+		The child struct has the abilities of the parent struct like its fields and methods access.
+		Egs:
+			type Admin struct {						type Admin struct {
+				fname	string							email 	string
+				lname	string							pass 	string
+				birthDate string						user 	User
+			}										}
+	
+	Struct Tags:
+		-> Its a meta data that we can add to the field of struct which names the field while exporting to the JSON.
+		Eg: type Note struct {
+				Title string `json:"title"`
+			}
+	Exporting Struct to file
+		-> We can use the json.Marshal function to convert the Struct to byte stream.
+		-> While transforring the data from struct to file we need to keep all the field of struct to be Public(Uppercase) in order to export it. As the "os" library in the 
+		   Other package tries to access the field of struct.
+	
+	
+-------------------
+Interfaces in Go
+-------------------
+
 	-> Its like a contract if signed you will have to implement all the functions of the interface.
 	-> Eg: type <interface_name> interface {
 			Save() error
@@ -39,68 +111,96 @@
 	
 	Generics in Go:
 		We can give generic names to the interface and use that as the type.
+		
+-----------------------
+Functions In Go
+-----------------------
 
-2.2 Arrays in Java
-	-> Defining array 
-		var <variableName> [<length>]string
-		Similar to java we can access and update the arrays.
-	-> 	Slices -> A window of an array.
-			newArray := array[0:3] // 0 included and 3 excluded
-			Slices is an part of window of an array, Any change in the value of sliced element it will change it in the original array as well.
-	-> 	len(<sliceName>), cap(<sliceName>) // len share the number of element currently present and cap shares the whole capacity of the slice.
-			newArray :=  []string {"Suraj", "Anand", "Astha", "Jyoti"}
-			sliceElem := newArray[1:3]
-			len(sliceElem) 	// Outputs 2
-			cap(sliceElem)  // Outputs 3 because slice takes the whole right capacity of newArray, capacity is extendable to right not to the left.
-		
-	Dynamic List with slices
-		prices := []float64 {10.99, 8.99} 	// Dynamic sizing of the slice
-		updatedSlices := append(prices, 5.99)				// Append creates a new slice and appends the value to it.
+	* Normal Functions
 	
-	To Merge different slices we can use (...) operator
-	goals1 := []string {"A", "B"}
-	goals2 := []string {"C", "D"}
-	goals4 := append(goals1, goals2...)
-
-2.3 Map in Go Lang
-	-> Creating Map syntax
-		map[string]string		-> map[<datatype or customtype>]<datatype or customtype>
-		websites := map[string]string {"google" : "google.com"}
-		googleURL := websites["google"]
-		delete(googleURL , "google")
-		
-2.4 make() functions
-	
-	Advatage of using make function is that go has to each time allocate a memory if we create a slice or map by basice approach whenever there is an increase
-	in the size, but using make function we can allocate some predefined size and go will create that slice or map for the first time with that much size.
-	
-	Slices
-	-> syntax make([]string, 2)			// make([]<slicetype>, <optional, intialsize a size of an array>, <optional, maximum number of array elements allowed>)
-		// Make at start initalizes the array with size provided and adding default value to it.
-	
-		
-	Map
-		-> make(map[string]string, 3)	// make(map[string]string, 3)
-		
-	Type Alias 
-		We can create a type alias and use it in make function. 
-		
-		type floatMap map[string]string;
-		func (m floatMap) output() {
-			fmt.Println(m);
-		}
-		websites :=	make(floatMap, 2)
-		websites["google"] = "google.com"
-		websites.output();
-	
-	For loops
-		-> Slices
-			for index, user := range userNames {}
-		-> Maps
-			for key, value := range websites {}
+		-> Saves memory, Improve Rediability and save time.
+			Syntax:
+				func function_name(Parameter-list)(Return_type) {
+					// function body...
+				}
+		-> Supports two ways to pass an argument:
+			-> Call by value
+				* By default go uses call by value.
+				* Operation indside function is performed on the Copy of the variable.
 			
+			-> Call by reference
+				* Pointers are used so that changes inside the function reflect in the caller’s variables.
+
+		-> We can have multiple return types from a single function defined in curly braces.
+		-> We can name the return type variable name while defining the function which creates a variable with default value. 
+			No need to return any thing in that case.
+
+	* Variadic Functions in Go:
+
+		-> Variadic functions in Go allow you to pass a variable number of arguments to a function.
+		-> A variadic function accepts multiple arguments of the same type and can be called with any number of arguments, including none.
+		-> Syntax:
+			func functionName(parameters ...Type) ReturnType {
+				// Code
+			}
+			* parameters ...Type indicates that the function can accept a variable number of arguments of type Type.
+			* You can access the arguments within the function as a slice.
 		
-2.5 Depeer in to Functions
+		-> Limitation of Variadic function
+			* Variadic functions can only have one variadic parameter, and it must be the last parameter.
+			* You cannot have multiple variadic parameters in a single function definition.
+
+	* Anonymous function in GO:
+	
+		-> No name is given to this function.
+			
+			Syntax: 
+			func(parameter_list)(return_type) {
+				// code..
+
+				// Use return statement if return_type is given
+				// if return_type is not given, then do not 
+				// use return statement
+				return
+			}()
+		-> We can assign the anonymous function to a variable as well.
+
+	* Methods in GoLang:
+		-> Difference between the function and method is that method has the receiver argument.
+		-> The receiver can be a struct or non-struct type, but both must be in the same package. 
+		-> Methods cannot be created for types defined in other packages, including built-in types like int or string; 
+			otherwise, the compiler will raise an error.
+		-> Methods can not be used as an anonymous object.
+		-> Syntax:
+				func (p Person) display() {}
+		Types:
+			a. Methods with Struct Type Receiver
+			b. Methods with Non-Struct(Custom Type) Type Receiver
+			c. Methods Accepting Pointer Receiver
+			d. Methods Accepting Both Pointer and Value
+		
+
+	* (main) and (init) function in Golang
+		
+		-> main() function
+			1. Special type of function which is the entry point of executable programs.
+			2. Every executable program must contain single main package and main() function.
+		
+		-> init() function
+			1. Same as main function no parameter it accepts nor has a return type.
+			2. Function present in every package and this function is called when package it initialized.
+			3. Can not reference from anywhere.
+			4. We can create multiple init function but they are executed in the order they are created.
+			5. We can keep init function in any package but they are called in lexical file name order.
+			6. init() functions always executes prior to the main function does not depends upon main function.
+			7. main purpose of the init() function is to initialize the global variables that cannot be initialized in the global context.
+	
+	* Defer keyword in GoLang
+		1. It delays the execution of the function or method or anonymous function until nearby function returns.
+		2. We can have multiple defer functions, but they are executed in LIFO order.
+		3. Defer statement are used when the files are closed, when their need is over, or to close the channel.
+		
+Depeer in to Functions
 	1. Using function as parameter value
 		-> We can pass function as the parameter in the another function
 		-> Eg: func usersMotherLanguage(user string, getUserMotherLanguage func (string) string)
@@ -132,24 +232,96 @@
 			-> Every anonymous function is a closure.
 			-> If we use the variable from outer scope in an anonymous function then it gets locked in to the anonymous function. This is called closure.
 			
-				
-				
 	3. Recursion
 		-> Same as Java
-	4. Variadic function
-		-> Functions where we can pass multiple argument by just defining one single parameter in the function
-		-> Eg: func sumup(number ...int) {}
 
-2.6 Concurrency - Running tasks in parallel
-	GoRoutines
-		-> Running program parallely.
-		-> If we use the following term it dispatches to goroutine
-			go fmt.Println("Hello");
+		
+		
+-------------------
+Go Routines		
+-------------------
+
+Concurrency VS Parallelism
+	Concurrency
+		* When two or more control flows(threads) of execution share one or more CPU's.
+		* In such case CPU scheduler is responsible for desciding when each threads gets to executed on which CPU.
+		* For Eg: Even if there is one CPU and two or more thread share the CPU, then its considered as concurrent execution.
+		* Concurrency makes efficient use of available resource.
+		
+	Parallelism
+		* It is a subset of concurrency
+		* Its when two or more threads executed at the same time on two or more CPUs
+		* For Eg: Three threads executing on three different CPUs simultaneously.
 	
+	
+
+	GoRoutines
+		* Key feature in Go which allow you to run functions concurrently or in parallel.
+		* Threads VS GoRoutine
+			-> Thread is managed by OS while GoRoutine is managed by Go runtime.
+			-> Thread stack default size is 1MB while in GoRoutine default stack size 2KB.
+		* Do not communicate by sharing a memory rather share a memory to communicate.
+		
+		* Creating a GoRoutines
+			-> Running program parallely.
+			-> If we use the following term it dispatches to goroutine
+				go fmt.Println("Hello");
+		
+		* Sync.waitgroup in GoLang
+			-> sync.WaitGroup is a synchronization primitive in Go that is used to wait for a collection of goroutines to finish thier execution.
+			-> It allows you to coordinate the execution of multiple goroutine and ensure that they all complete before continuing with the rest of the program.
+			-> Working of waith group behind the scene:
+				1. You create a sync.WaitGroup variable to keep track of the number of goroutine you want to wait for.
+				2. For each goroutine you start, you increment the WaitGroup counter using the Add method.
+				3. Inside each goroutine, you call Done on the WaitGroup to signal that the GoRoutine has finished its work.
+				4. Finally, you call Wait on the WaitGroup to block the main goroutine until all the other goroutines have called Done.
+			
+			-> There are other way of synchronization mechanisms in Go that we can use depending on specific use case.
+			-> We can use channels to synchronize goroutines.
+		
+		* mutex in GoLang
+			-> When there is a variable which is being used by multiple goroutines then the mutex comes in to picture.
+			-> Mutex locks or unlocks the memory address in order to overcome from data collision by multiple goroutines.
+			
+			-> RWMutex - ReadWriteMutex
+				* Advance version of Mutex where lock also gets implemented while reading the resource.
+				* In Mutex we apply lock while writing on it.
+				* Functions of RWMutext and Mutex are same.
+				* Read is generally a quick operation compared to Write.
+				* Write operation is given a priority so if any goroutine is reading then another wants to write then read goroutines are blocked and write is
+					given a priority.
+			
 	Channel
-		-> Mode of communication while working with goroutine
+	@ChaiAndCode @CodeWithRyan
+		-> Mode of communication between the goroutine.
+		-> Thread Safe
+		-> Hold Data
+		
+		Sender (ch <-):
+			* Sender sends the data in the channel.
+			
+		Receiver (<- ch):
+			* The next line of the receiver wont execute until it gets the data from the channel
+		
+		Close
+			* We can close the channel once sender has done with sending the data.
+		
+		Unbuffered Channel:
+			* Channel which does not have any buffer to store the data. 
+			* The receiver has to simultaneously consume the sent data.
+			* Eg: done := make(chan bool)
+		
+		Closing the DataChan
+			* Used to close a channel, signaling that no more values will be sent on it
+			* Only sender should close the channel
+			* Checking if channel is closed:
+				value, ok := <-channel
+				if !ok {
+					// Channel is closed
+				}
+			
 		-> Creating a channel
-			done := make(chan bool)
+			done := make(chan bool)		// Unbuffered Channel it does not have any buffer.
 			go greet(done)				// Passing channel to goroutine
 		
 		-> Updating data in goroutine
@@ -160,39 +332,46 @@
 	Select:
 		-> It is similar to switch statement with cases where in cases it selects the channel
 		-> The first channel that is set in the goroutine will be called in the switch statement.
+		-> Look example for more understanding
 		
 
-------------------------------------------------------------------------
 
-Follow below for Postgres SQL Connection in Go 
-https://shivaani27.medium.com/integrating-postgresql-with-go-a-complete-guide-with-a-task-management-example-ce1c860a168b
-
-IMP Points to Note:
-	=> DB.Exec() (when we created the tables)
-
-	=> Prepare() + stmt.Exec() (when we inserted data into the database)
-
-	=> DB.Query() (when we fetched data from the database)
-
-	=> Using Prepare() is 100% optional! You could send all your commands directly via Exec() or Query().
-		The difference between those two methods then just is whether you're fetching data from the database (=> use Query()) or your manipulating the 
-		database / data in the database (=> use Exec()).
+Environment Variables of Go
+	GOROOT 		- The root directory of your Go installation
+	GOPATH 		- This variable specifies the workspace directory for your Go projects. It is where your Go code, binaries, and packages are stored.
+	GOBIN		- This variable specifies the directory where Go installs binaries. By default, it is set to $GOPATH/bin
+	GOOS		- This variable specifies the target operating system for which the Go code is being compiled. Common values include linux, darwin (macOS), 
+					and windows
+	GOPROXY		- This variable specifies the proxy server for downloading Go modules. It can be set to direct to disable the proxy.
+	GOCACHE		- This variable specifies the directory where the Go build cache is stored.
 	
-		But what's the advantage of using Prepare()?
-			-> Prepare() prepares a SQL statement - this can lead to better performance if the same statement is executed multiple times (potentially with different 
-				data for its placeholders).
-			-> This is only true, if the prepared statement is not closed (stmt.Close()) in between those executions. In that case, there wouldn't be any advantages.
-			-> And, indeed, in this application, we are calling stmt.Close() directly after calling stmt.Exec(). So here, it really wouldn't matter which 
-			approach you're using.
-			
-Middleware 
-	-> We can register the middleware in two ways
+	
+Writing to files:
+	-> Use of Go standard library "os"
+	-> os.WriteFile("messageSwitch.txt", []byte(msg), 0644) -> 0644 represent the permission
+
+Error in GoLang
+	-> "errors" is the inbuilt library in Go which can create a new errors. errors.New("Description of the error").
+	-> We do not have try catch block in GoLang but we can check the error using the If else conditions
+
+panic()
+	-> It halts the program execution.
+	-> It can output the error message panic("Can not process further")
+
+Package in Go
+	-> You can access the functions and variables of same package without importing it.
+	-> We can create a multiple package with different names.
+		-> The constraint with the package we have is that one folder can have one package name for all go files.
+		-> You need to create a new subfolder for new sub package.
+		-> The folder name and the package name should be same.
 		
-		First Way
-			We can add multiple middleware passing from left to right in the below function
-			
-			Eg: server.POST("/events", middleware.Authenticate, eventHandler.CreateEvent)
-		
-		Second Way
-			We need to group the routes and then apply the middleware in one go.
-		
+		-> While importing you need to give the project name(in go.mod file) followed by the package name.
+				Eg: import "github.com/suraj8108/learnGo/newPackage"
+		-> (IMP) In Go you can export the function, variable and constant only if that starts with the uppercase. Else it can not be imported.
+
+Custom Type in Go
+	-> We can create alias to the built in type and use it.
+	Eg: type str string;
+		var name str;		//Here str acts like an alias for string.
+	-> The main use case of this is to extend the builtin types and add a new functions to it.
+		Eg func (str) printMyString() {}

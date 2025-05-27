@@ -1,0 +1,19 @@
+SQL
+
+Microservice,
+
+Networking related
+
+AWS
+
+Messaging Queue - Event Driven Architectures
+
+Docker and Kubernates
+
+Network Protocols
+
+Storage Engines
+
+-----------
+PSV3 Code understanding
+-----------
