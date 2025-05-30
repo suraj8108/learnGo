@@ -190,11 +190,12 @@ Functions In Go
 			1. Same as main function no parameter it accepts nor has a return type.
 			2. Function present in every package and this function is called when package it initialized.
 			3. Can not reference from anywhere.
-			4. We can create multiple init function but they are executed in the order they are created.
+			4. We can create multiple init function within a single package and even within a single file but they are executed in the order they are created.
 			5. We can keep init function in any package but they are called in lexical file name order.
 			6. init() functions always executes prior to the main function does not depends upon main function.
 			7. main purpose of the init() function is to initialize the global variables that cannot be initialized in the global context.
-	
+			
+			1. Imported packages init functions are executed in alphabatical order and then the main package init function is executed and at last main function is invoked.
 	* Defer keyword in GoLang
 		1. It delays the execution of the function or method or anonymous function until nearby function returns.
 		2. We can have multiple defer functions, but they are executed in LIFO order.
@@ -353,10 +354,30 @@ Writing to files:
 Error in GoLang
 	-> "errors" is the inbuilt library in Go which can create a new errors. errors.New("Description of the error").
 	-> We do not have try catch block in GoLang but we can check the error using the If else conditions
+	-> Go provides a built-in panic function to handle exceptional situations. When a panic occurs, it stops the execution of the program and starts unwinding 
+		the stack, executing deferred functions along the way. To recover from a panic, you can use the recover function in a deferred function. This allows you to handle the panic gracefully and continue the program execution.
 
+recover():
+	-> Used to regain control of a panicking goroutine. It only works if called inside a deferred function.
+	-> Recover function is always called inside the deferred function, not in the normal function.
+	-> The main use of this function is to regain control of a panicking Goroutine.
+	-> Recover function stops the panicking sequence by simply restoring the normal execution of the goroutine and retrieves the error value passed to the call 
+		of panic
+	-> The function in which the panic has happened the further exection of code does not happens and recover simply runs its part of code and returns back to the outer function. Similar to 
+	
+	
 panic()
 	-> It halts the program execution.
 	-> It can output the error message panic("Can not process further")
+	
+	Panic inside the GoRoutine
+		-> If panic happened in goroutine then if that panic is recovered in that goroutine then it will not crash the goroutine and it wont throw error in 
+			main goroutine.
+		-> If panic happened in goroutine then if that panic is not recovered in that goroutine then it will crash the goroutine but main goroutine wont be 
+			crashed rather it will print a stack trace to stderr in main goroutine and program stops.
+		-> 
+	
+
 
 Package in Go
 	-> You can access the functions and variables of same package without importing it.

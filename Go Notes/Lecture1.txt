@@ -13,7 +13,7 @@ INTRODUCTION
 	=> About
 		* Procedural Programming Language - Works with function and all.
 		* Dynamic languages Eg: Type inference := 
-		* Statically Typed language - Type in known at compile time rather at runtime.
+		* Statically Typed language - Type is known at compile time rather at runtime.
 		* Garbage-collected programming language
 		* Support for concurrency through Goroutines and channels.
 		* Automatically Manages memory - restricts memory leaks and errors.
@@ -256,7 +256,7 @@ Loops in Go
 	4. Simple range in for loop
 		
 		* For Array
-			for i, j:= range rvariable{
+			for index, value := range rvariable{
 				// statement..
 			}
 		

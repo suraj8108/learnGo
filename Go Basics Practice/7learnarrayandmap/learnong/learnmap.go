@@ -40,7 +40,7 @@ func Learnmap() {
 	userScoreDetails["Suraj"] = 20.22
 	userScoreDetails["Allen"] = 24.22
 	userScoreDetails["Job"] = 90.22
-
+	delete(userScoreDetails, "Suraj")
 	userScoreDetails.outputScore()
 
 }
